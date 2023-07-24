@@ -42,7 +42,7 @@ class AliceAgent(AriesAgent):
             ident,
             http_port,
             admin_port,
-            prefix="Alice",
+            prefix="FranchiseStore",
             no_auto=no_auto,
             seed=None,
             aip=aip,
@@ -104,7 +104,7 @@ async def input_invitation(agent_container):
 
 
 async def main(args):
-    alice_agent = await create_agent_with_args(args, ident="alice")
+    alice_agent = await create_agent_with_args(args, ident="franchise_store")
 
     try:
         log_status(
@@ -116,7 +116,7 @@ async def main(args):
             )
         )
         agent = AliceAgent(
-            "alice.agent",
+            "franchise_store.agent",
             alice_agent.start_port,
             alice_agent.start_port + 1,
             genesis_data=alice_agent.genesis_txns,
@@ -207,7 +207,7 @@ async def main(args):
 
 
 if __name__ == "__main__":
-    parser = arg_parser(ident="alice", port=8030)
+    parser = arg_parser(ident="franchise_store", port=8030)
     args = parser.parse_args()
 
     ENABLE_PYDEVD_PYCHARM = os.getenv("ENABLE_PYDEVD_PYCHARM", "").lower()
@@ -225,7 +225,7 @@ if __name__ == "__main__":
             import pydevd_pycharm
 
             print(
-                "Alice remote debugging to "
+                "franchise_store remote debugging to "
                 f"{PYDEVD_PYCHARM_HOST}:{PYDEVD_PYCHARM_CONTROLLER_PORT}"
             )
             pydevd_pycharm.settrace(

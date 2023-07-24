@@ -52,7 +52,7 @@ class FaberAgent(AriesAgent):
             ident,
             http_port,
             admin_port,
-            prefix="Faber",
+            prefix="OrangeCompany",
             no_auto=no_auto,
             endorser_role=endorser_role,
             revocation=revocation,
@@ -373,7 +373,7 @@ class FaberAgent(AriesAgent):
 
 
 async def main(args):
-    faber_agent = await create_agent_with_args(args, ident="faber")
+    faber_agent = await create_agent_with_args(args, ident="orange_company")
 
     try:
         log_status(
@@ -385,7 +385,7 @@ async def main(args):
             )
         )
         agent = FaberAgent(
-            "faber.agent",
+            "orange_company.agent",
             faber_agent.start_port,
             faber_agent.start_port + 1,
             genesis_data=faber_agent.genesis_txns,
@@ -402,13 +402,13 @@ async def main(args):
             endorser_role=faber_agent.endorser_role,
         )
 
-        faber_schema_name = "degree schema"
+        faber_schema_name = "store legitimization schema"
         faber_schema_attrs = [
-            "name",
-            "date",
-            "degree",
-            "birthdate_dateint",
-            "timestamp",
+            "branch_name",
+            "branch_manager",
+            "branch_address",
+            "branch_longitude",
+            "branch_latitude",
         ]
         if faber_agent.cred_type == CRED_FORMAT_INDY:
             faber_agent.public_did = True
@@ -686,7 +686,7 @@ async def main(args):
             elif option == "4":
                 log_msg(
                     "Creating a new invitation, please receive "
-                    "and accept this invitation using Alice agent"
+                    "and accept this invitation using Holder agent"
                 )
                 await faber_agent.generate_invitation(
                     display_qr=True,
@@ -765,7 +765,7 @@ if __name__ == "__main__":
             import pydevd_pycharm
 
             print(
-                "Faber remote debugging to "
+                "OrangeCompany remote debugging to "
                 f"{PYDEVD_PYCHARM_HOST}:{PYDEVD_PYCHARM_CONTROLLER_PORT}"
             )
             pydevd_pycharm.settrace(

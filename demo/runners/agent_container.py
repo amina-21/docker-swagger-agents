@@ -1179,7 +1179,7 @@ def arg_parser(ident: str = None, port: int = 8020):
         metavar=("<port>"),
         help="Choose the starting port number to listen on",
     )
-    if (not ident) or (ident != "alice"):
+    if (not ident) or (ident != "franchise_store"):
         parser.add_argument(
             "--did-exchange",
             action="store_true",
@@ -1194,7 +1194,7 @@ def arg_parser(ident: str = None, port: int = 8020):
         metavar=("<tails-server-base-url>"),
         help="Tails server base url",
     )
-    if (not ident) or (ident != "alice"):
+    if (not ident) or (ident != "franchise_store"):
         parser.add_argument(
             "--cred-type",
             type=str,
@@ -1247,7 +1247,7 @@ def arg_parser(ident: str = None, port: int = 8020):
             "directly."
         ),
     )
-    if (not ident) or (ident != "alice"):
+    if (not ident) or (ident != "franchise_store"):
         parser.add_argument(
             "--reuse-connections",
             action="store_true",
@@ -1413,7 +1413,7 @@ async def test_main(
         )
         alice_container = AgentContainer(
             genesis_txns=genesis,
-            ident="Alice.agent",
+            ident="franchise_store.agent",
             start_port=start_port + 10,
             no_auto=no_auto,
             revocation=False,
@@ -1465,7 +1465,7 @@ async def test_main(
         try:
             # shut down containers at the end of the test
             if alice_container:
-                log_msg("Shutting down alice agent ...")
+                log_msg("Shutting down franchise_store agent ...")
                 await alice_container.terminate()
             if faber_container:
                 log_msg("Shutting down faber agent ...")
